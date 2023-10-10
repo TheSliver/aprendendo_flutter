@@ -1,0 +1,8 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "editor.columnSelection": false,
+    "editor.wordWrapColumn": 80,
+    "editor.minimap.maxColumn": 120,
+    "editor.glyphMargin": true,
+    "notebook.compactView": true
+}
