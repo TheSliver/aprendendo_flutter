@@ -1,3 +1,7 @@
-# aprendendo_flutter
+# App Tarefas 
+# Curso de Flutter no Alura
 
-A new Flutter project.
+Esse respositório tem epenas como objetivo exercitar meus aprendizados em 
+Dart/flutter 
+
+
