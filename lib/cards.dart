@@ -70,7 +70,7 @@ class _CardsState extends State<Cards> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5),
-                            child: Image.network(
+                            child: Image.asset(
                               widget.foto,
                               fit: BoxFit.cover,
                             ),
