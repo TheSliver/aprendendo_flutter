@@ -1,4 +1,5 @@
 //Meus Cartões
+
 import 'package:flutter/material.dart';
 
 class Cards extends StatefulWidget {
@@ -37,7 +38,8 @@ class _CardsState extends State<Cards> {
                         offset: Offset(2, 3),
                       ),
                     ]),
-                width: (widget.tela.width * 95) / 100, //380,
+                width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
+                    0.95, //380,
                 height: 135,
               ),
               Column(
@@ -54,13 +56,16 @@ class _CardsState extends State<Cards> {
                         ),
                       ],
                     ),
-                    width: (widget.tela.width * 95) / 100,
+                    width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
+                        0.95,
                     height: 100,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: (widget.tela.width * 20) / 100,
+                          width: num.parse(
+                                  widget.tela.width.toStringAsPrecision(3)) *
+                              0.20,
                           height: 100,
                           decoration: const BoxDecoration(
                             color: Colors.black26,
@@ -81,7 +86,9 @@ class _CardsState extends State<Cards> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 200,
+                              width: num.parse(widget.tela.width
+                                      .toStringAsPrecision(3)) *
+                                  0.50, //200,
                               child: Text(
                                 widget.texto,
                                 style: const TextStyle(fontSize: 20),
@@ -139,14 +146,16 @@ class _CardsState extends State<Cards> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                              const Color.fromARGB(255, 222, 249, 191),
+                                  const Color.fromARGB(255, 222, 249, 191),
                               shadowColor: Colors.black,
                               elevation: 5,
                             ),
-                            child: const SizedBox(
+                            child: SizedBox(
                               height: 75,
-                              width: 35,
-                              child: Column(
+                              width: num.parse(widget.tela.width
+                                      .toStringAsPrecision(3)) *
+                                  0.10,
+                              child: const Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -168,14 +177,17 @@ class _CardsState extends State<Cards> {
                     ),
                   ),
                   SizedBox(
-                    width: 380,
+                    width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
+                        0.95,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 200,
+                            width: num.parse(
+                                    widget.tela.width.toStringAsPrecision(3)) *
+                                0.50,
                             child: LinearProgressIndicator(
                               value: (widget.dificuldade > 0)
                                   ? (lvltarefa / widget.dificuldade) / 10

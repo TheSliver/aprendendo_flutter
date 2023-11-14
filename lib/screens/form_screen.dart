@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  final Size tela;
+
+  const FormScreen(this.tela, {super.key});
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -15,8 +17,6 @@ class _FormScreenState extends State<FormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-
     return Form(
       key: _formKey,
       child: Scaffold(
@@ -29,7 +29,10 @@ class _FormScreenState extends State<FormScreen> {
           child: Center(
             heightFactor: 1.05,
             child: Container(
-              width: 380,
+              width: num.parse(
+                    widget.tela.width.toStringAsPrecision(3),
+                  ) *
+                  0.95,
               height: 700,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -53,16 +56,19 @@ class _FormScreenState extends State<FormScreen> {
                       color: Colors.white,
                     ),
                     decoration: const InputDecoration(
-                      errorStyle: TextStyle(fontSize: 15),
+                      errorStyle: TextStyle(fontSize: 15, color: Color.fromARGB(
+                          255, 255, 0, 0),),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(255, 185, 63, 51),
+                          color: Color.fromARGB(
+                              255, 255, 0, 0),
                           width: 2,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(255, 185, 63, 51),
+                          color: Color.fromARGB(
+                              255, 255, 0, 0),
                           width: 2,
                         ),
                       ),
@@ -111,16 +117,19 @@ class _FormScreenState extends State<FormScreen> {
                         color: Colors.white,
                       ),
                       decoration: const InputDecoration(
-                        errorStyle: TextStyle(fontSize: 15),
+                        errorStyle: TextStyle(fontSize: 15, color: Color.fromARGB(
+                            255, 255, 0, 0)),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color.fromARGB(255, 185, 63, 51),
+                            color: Color.fromARGB(
+                                255, 255, 0, 0),
                             width: 2,
                           ),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color.fromARGB(255, 185, 63, 51),
+                            color: Color.fromARGB(
+                                255, 255, 0, 0),
                             width: 2,
                           ),
                         ),
@@ -153,7 +162,10 @@ class _FormScreenState extends State<FormScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    width: (screenSize.width * 20) / 100,
+                    width: num.parse(
+                          widget.tela.width.toStringAsPrecision(3),
+                        ) *
+                        0.20,
                     height: 100,
                     decoration: const BoxDecoration(
                       color: Colors.black26,
@@ -179,7 +191,6 @@ class _FormScreenState extends State<FormScreen> {
                     if (_formKey.currentState!.validate()) {
                       print(taskController.text);
                       print(difficultyController.text);
-                      print('${screenSize.width}  ${screenSize.height}');
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -194,10 +205,11 @@ class _FormScreenState extends State<FormScreen> {
                       (states) => const Color.fromARGB(255, 222, 249, 191),
                     ),
                   ),
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 50,
-                    width: 200,
-                    child: Column(
+                    width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
+                        0.20,
+                    child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
