@@ -27,7 +27,7 @@ class _CorpoTelaState extends State<CorpoTela> {
   
   @override
   Widget build(BuildContext context) {
-    return Task();
+    return const Task();
     // return const Task();
   }
 }

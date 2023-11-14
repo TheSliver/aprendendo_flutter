@@ -100,60 +100,58 @@ class _FormScreenState extends State<FormScreen> {
                 SliderPick('Dificuldade', 5, 5, difficultyController),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Adicione uma Imagem';
-                        }
-                        return null;
-                      },
-                      onChanged: (TextEditingController) {
-                        setState(() {});
-                      },
-                      controller: imageController,
-                      cursorColor: const Color.fromARGB(255, 255, 255, 255),
-                      style: const TextStyle(
-                        color: Colors.white,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Adicione uma Imagem';
+                      }
+                      return null;
+                    },
+                    onChanged: (imageController) {
+                      setState(() {});
+                    },
+                    controller: imageController,
+                    cursorColor: const Color.fromARGB(255, 255, 255, 255),
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                    decoration: const InputDecoration(
+                      errorStyle: TextStyle(fontSize: 15, color: Color.fromARGB(
+                          255, 255, 0, 0)),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(
+                              255, 255, 0, 0),
+                          width: 2,
+                        ),
                       ),
-                      decoration: const InputDecoration(
-                        errorStyle: TextStyle(fontSize: 15, color: Color.fromARGB(
-                            255, 255, 0, 0)),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(
-                                255, 255, 0, 0),
-                            width: 2,
-                          ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(
+                              255, 255, 0, 0),
+                          width: 2,
                         ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(
-                                255, 255, 0, 0),
-                            width: 2,
-                          ),
-                        ),
-                        labelText: 'Tarefa',
-                        floatingLabelStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        labelStyle: TextStyle(
+                      ),
+                      labelText: 'Tarefa',
+                      floatingLabelStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 222, 249, 191),
+                        fontSize: 15,
+                      ),
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
                           color: Color.fromARGB(255, 222, 249, 191),
-                          fontSize: 15,
                         ),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 222, 249, 191),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 2,
-                          ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 2,
                         ),
                       ),
                     ),
@@ -189,8 +187,6 @@ class _FormScreenState extends State<FormScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      print(taskController.text);
-                      print(difficultyController.text);
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -233,6 +229,7 @@ class _FormScreenState extends State<FormScreen> {
   }
 }
 
+//ignore: must_be_immutable
 class SliderPick extends StatefulWidget {
   final String sliderName;
   final double slidePickMax;
