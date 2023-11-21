@@ -1,9 +1,13 @@
+import 'package:aprendendo_flutter/Component/picture_frame.dart';
+import 'package:aprendendo_flutter/data/task_inherited.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
   final Size tela;
 
-  const FormScreen(this.tela, {super.key});
+  const FormScreen(this.tela, {super.key, required this.taskContext});
+
+  final BuildContext taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -56,19 +60,19 @@ class _FormScreenState extends State<FormScreen> {
                       color: Colors.white,
                     ),
                     decoration: const InputDecoration(
-                      errorStyle: TextStyle(fontSize: 15, color: Color.fromARGB(
-                          255, 255, 0, 0),),
+                      errorStyle: TextStyle(
+                        fontSize: 15,
+                        color: Color.fromARGB(255, 255, 0, 0),
+                      ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(
-                              255, 255, 0, 0),
+                          color: Color.fromARGB(255, 255, 0, 0),
                           width: 2,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(
-                              255, 255, 0, 0),
+                          color: Color.fromARGB(255, 255, 0, 0),
                           width: 2,
                         ),
                       ),
@@ -116,19 +120,17 @@ class _FormScreenState extends State<FormScreen> {
                       color: Colors.white,
                     ),
                     decoration: const InputDecoration(
-                      errorStyle: TextStyle(fontSize: 15, color: Color.fromARGB(
-                          255, 255, 0, 0)),
+                      errorStyle: TextStyle(
+                          fontSize: 15, color: Color.fromARGB(255, 255, 0, 0)),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(
-                              255, 255, 0, 0),
+                          color: Color.fromARGB(255, 255, 0, 0),
                           width: 2,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(
-                              255, 255, 0, 0),
+                          color: Color.fromARGB(255, 255, 0, 0),
                           width: 2,
                         ),
                       ),
@@ -158,39 +160,23 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: num.parse(
-                          widget.tela.width.toStringAsPrecision(3),
-                        ) *
-                        0.20,
-                    height: 100,
-                    decoration: const BoxDecoration(
-                      color: Colors.black26,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(5),
-                      ),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: Image.network(
-                        errorBuilder: (BuildContext context, Object error,
-                            StackTrace? stackTrace) {
-                          return Image.asset('assets/image/NoImage.png');
-                        },
-                        imageController.text,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                  padding: const EdgeInsets.all(20.0),
+                  child: PictureFrame(imageController.text, widget.tela),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      TaskInherited.of(widget.taskContext).newTask(
+                        taskController.text,
+                        imageController.text,
+                        int.parse(difficultyController.text),
+                      );
 
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Tarefa Inserida com Sucesso!'),
+                        const SnackBar(backgroundColor: Colors.black87,
+                          content: Text('Tarefa Inserida com Sucesso!',
+                              style: TextStyle(color: Colors.lightGreenAccent),
+                          ),
                         ),
                       );
                       Navigator.pop(context);
@@ -229,14 +215,14 @@ class _FormScreenState extends State<FormScreen> {
   }
 }
 
-//ignore: must_be_immutable
 class SliderPick extends StatefulWidget {
   final String sliderName;
   final double slidePickMax;
   final int slidePickDivisions;
-  TextEditingController difficultyController = TextEditingController();
+  final TextEditingController
+      difficultyController; // = TextEditingController();
 
-  SliderPick(this.sliderName, this.slidePickMax, this.slidePickDivisions,
+  const SliderPick(this.sliderName, this.slidePickMax, this.slidePickDivisions,
       this.difficultyController,
       {super.key});
 

@@ -1,14 +1,15 @@
 //Meus Cartões
 
+import 'package:aprendendo_flutter/Component/picture_frame.dart';
 import 'package:flutter/material.dart';
+import '../Component/difficulty.dart';
 
 class Cards extends StatefulWidget {
   final String texto;
   final String foto;
   final int dificuldade;
-  final Size tela;
 
-  const Cards(this.texto, this.foto, this.dificuldade, this.tela, {super.key});
+  const Cards(this.texto, this.foto, this.dificuldade, {super.key});
 
   @override
   State<Cards> createState() => _CardsState();
@@ -19,8 +20,10 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
+    final Size tela = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,8 +41,8 @@ class _CardsState extends State<Cards> {
                         offset: Offset(2, 3),
                       ),
                     ]),
-                width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
-                    0.95, //380,
+                width:
+                    num.parse(tela.width.toStringAsPrecision(3)) * 0.95, //380,
                 height: 135,
               ),
               Column(
@@ -56,84 +59,27 @@ class _CardsState extends State<Cards> {
                         ),
                       ],
                     ),
-                    width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
-                        0.95,
+                    width: num.parse(tela.width.toStringAsPrecision(3)) * 0.95,
                     height: 100,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: num.parse(
-                                  widget.tela.width.toStringAsPrecision(3)) *
-                              0.20,
-                          height: 100,
-                          decoration: const BoxDecoration(
-                            color: Colors.black26,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Image.asset(
-                              widget.foto,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        PictureFrame(widget.foto, tela),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: num.parse(widget.tela.width
-                                      .toStringAsPrecision(3)) *
-                                  0.50, //200,
+                              width:
+                                  num.parse(tela.width.toStringAsPrecision(3)) *
+                                      0.50, //200,
                               child: Text(
                                 widget.texto,
                                 style: const TextStyle(fontSize: 20),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 1)
-                                      ? Colors.green
-                                      : Colors.green.shade100,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 2)
-                                      ? Colors.green
-                                      : Colors.green.shade100,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 3)
-                                      ? Colors.green
-                                      : Colors.green.shade100,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 4)
-                                      ? Colors.green
-                                      : Colors.green.shade100,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 5)
-                                      ? Colors.green
-                                      : Colors.green.shade100,
-                                )
-                              ],
-                            )
+                            Difficulty(widget.dificuldade)
                           ],
                         ),
                         Padding(
@@ -152,9 +98,9 @@ class _CardsState extends State<Cards> {
                             ),
                             child: SizedBox(
                               height: 75,
-                              width: num.parse(widget.tela.width
-                                      .toStringAsPrecision(3)) *
-                                  0.10,
+                              width:
+                                  num.parse(tela.width.toStringAsPrecision(3)) *
+                                      0.10,
                               child: const Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -177,17 +123,16 @@ class _CardsState extends State<Cards> {
                     ),
                   ),
                   SizedBox(
-                    width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
-                        0.95,
+                    width: num.parse(tela.width.toStringAsPrecision(3)) * 0.95,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: num.parse(
-                                    widget.tela.width.toStringAsPrecision(3)) *
-                                0.50,
+                            width:
+                                num.parse(tela.width.toStringAsPrecision(3)) *
+                                    0.50,
                             child: LinearProgressIndicator(
                               value: (widget.dificuldade > 0)
                                   ? (lvltarefa / widget.dificuldade) / 10
