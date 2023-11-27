@@ -1,5 +1,6 @@
 //Meus Cartões
 
+import 'package:aprendendo_flutter/Component/percent_size.dart';
 import 'package:aprendendo_flutter/Component/picture_frame.dart';
 import 'package:flutter/material.dart';
 import '../Component/difficulty.dart';
@@ -17,11 +18,10 @@ class Cards extends StatefulWidget {
 
 class _CardsState extends State<Cards> {
   int lvltarefa = 0;
+  final PercentSize percentSize = PercentSize();
 
   @override
   Widget build(BuildContext context) {
-    final Size tela = MediaQuery.of(context).size;
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: Row(
@@ -41,8 +41,7 @@ class _CardsState extends State<Cards> {
                         offset: Offset(2, 3),
                       ),
                     ]),
-                width:
-                    num.parse(tela.width.toStringAsPrecision(3)) * 0.95, //380,
+                width:percentSize.width(95, context),
                 height: 135,
               ),
               Column(
@@ -59,20 +58,18 @@ class _CardsState extends State<Cards> {
                         ),
                       ],
                     ),
-                    width: num.parse(tela.width.toStringAsPrecision(3)) * 0.95,
+                    width: percentSize.width(95, context),
                     height: 100,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        PictureFrame(widget.foto, tela),
+                        PictureFrame(widget.foto),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width:
-                                  num.parse(tela.width.toStringAsPrecision(3)) *
-                                      0.50, //200,
+                              width:percentSize.width(50, context),
                               child: Text(
                                 widget.texto,
                                 style: const TextStyle(fontSize: 20),
@@ -98,9 +95,7 @@ class _CardsState extends State<Cards> {
                             ),
                             child: SizedBox(
                               height: 75,
-                              width:
-                                  num.parse(tela.width.toStringAsPrecision(3)) *
-                                      0.10,
+                              width:percentSize.width(10, context),
                               child: const Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +118,7 @@ class _CardsState extends State<Cards> {
                     ),
                   ),
                   SizedBox(
-                    width: num.parse(tela.width.toStringAsPrecision(3)) * 0.95,
+                    width: percentSize.width(95, context),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -131,8 +126,7 @@ class _CardsState extends State<Cards> {
                         children: [
                           SizedBox(
                             width:
-                                num.parse(tela.width.toStringAsPrecision(3)) *
-                                    0.50,
+                            percentSize.width(50, context),
                             child: LinearProgressIndicator(
                               value: (widget.dificuldade > 0)
                                   ? (lvltarefa / widget.dificuldade) / 10

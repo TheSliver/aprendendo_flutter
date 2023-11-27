@@ -1,11 +1,10 @@
+import 'package:aprendendo_flutter/Component/percent_size.dart';
 import 'package:aprendendo_flutter/Component/picture_frame.dart';
 import 'package:aprendendo_flutter/data/task_inherited.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
-  final Size tela;
-
-  const FormScreen(this.tela, {super.key, required this.taskContext});
+  const FormScreen({super.key, required this.taskContext});
 
   final BuildContext taskContext;
 
@@ -18,6 +17,7 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imageController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final PercentSize percentSize = PercentSize();
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,7 @@ class _FormScreenState extends State<FormScreen> {
           child: Center(
             heightFactor: 1.05,
             child: Container(
-              width: num.parse(
-                    widget.tela.width.toStringAsPrecision(3),
-                  ) *
-                  0.95,
+              width: percentSize.width(95, context),
               height: 700,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -161,7 +158,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: PictureFrame(imageController.text, widget.tela),
+                  child: PictureFrame(imageController.text),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -189,8 +186,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   child: SizedBox(
                     height: 50,
-                    width: num.parse(widget.tela.width.toStringAsPrecision(3)) *
-                        0.20,
+                    width: percentSize.width(20, context),
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,

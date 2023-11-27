@@ -13,7 +13,6 @@ class _TaskState extends State<Task> {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 222, 249, 191),
@@ -34,7 +33,7 @@ class _TaskState extends State<Task> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (contextNew) => FormScreen(screenSize, taskContext: context),
+                builder: (contextNew) => FormScreen(taskContext: context),
               ),
             );
           });

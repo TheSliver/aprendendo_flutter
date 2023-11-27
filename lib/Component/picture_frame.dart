@@ -1,18 +1,15 @@
+import 'package:aprendendo_flutter/Component/percent_size.dart';
 import 'package:flutter/material.dart';
 
 class PictureFrame extends StatelessWidget {
-  const PictureFrame(this.linkImage, this.tela, {super.key});
-
+  PictureFrame(this.linkImage, {super.key});
   final String linkImage;
-  final Size tela;
+  final PercentSize percentSize = PercentSize();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: num.parse(
-            tela.width.toStringAsPrecision(3),
-          ) *
-          0.20,
+      width: percentSize.width(20, context),
       height: 100,
       decoration: const BoxDecoration(
         color: Colors.black26,
